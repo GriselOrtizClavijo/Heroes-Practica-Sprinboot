@@ -1,12 +1,27 @@
 package com.keepcoding.springboot.Model;
 
+import org.hibernate.annotations.Generated;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Entity
 public class Hero {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Size(min = 3, max = 8, message = "El tamaño debe estar entre 3 y 8 dígitos")
     private String name;
     private String heroName;
+
+    @Past
     private Date birthDate;
 
     public Hero(int id, String name, String heroName, Date birthDate) {
